@@ -1,0 +1,23 @@
+name: release
+
+on:
+ push:
+   tags:
+     - "*"
+
+jobs:
+  publish_release:
+    name: publish_release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: dotnet publish
+      run: dotnet publish src\BigFileFinder.csproj --runtime win-x64
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: /Src/bin/Release/net8.0/win-x64/publish/BigFileFinder.exe
