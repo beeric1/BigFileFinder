@@ -15,8 +15,10 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+    - name: debug
+      run: pwd
     - name: dotnet publish
-      run: dotnet publish BigFileFinder/Src/BigFileFinder.csproj --runtime win-x64
+      run: dotnet publish Src/BigFileFinder.csproj --runtime win-x64
     - name: Release
       uses: softprops/action-gh-release@v2
       with:
