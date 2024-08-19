@@ -49,7 +49,7 @@ namespace BigFileFinder
                 list.AddRange(PrintDirectoryRec(directory, depth));
             }
 
-            return list.Count > 1 ? list : [];
+            return list.Count > 1 || depth == 1 ? list : [];
         }
 
         private string? PrintFile(FileInfo fileInfo, int depth = 0)
